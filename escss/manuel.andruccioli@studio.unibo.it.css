@@ -110,7 +110,7 @@ body > footer {
     clear: right;
     background-image: linear-gradient(to top left, pink, yellow, pink, purple);
     width: 100%;
-    padding: 20px;
+    padding: 20px 0;
     border-top: 3px solid purple;
 }
 
