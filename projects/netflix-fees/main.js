@@ -24,7 +24,7 @@ Date.prototype.getMonthName = function() {
 class User {
     constructor(name, lastDataPayment, reminder) {
         this.name = name;
-        this.lastDataPayment = lastDataPayment;
+        this.lastDataPayment = new Date(lastDataPayment);
         this.reminder = reminder;
     }
 
@@ -74,6 +74,7 @@ for (const key in fees) {
     main.innerHTML += 
     `<section>
         <h2>${user.name}</h2>
+        <p>Ultimo pagamento: <span>${user.lastDataPayment.toLocaleDateString()}</span></p>
         <section>
             <p>Da Pagare: <span>${user.amount()} €</span></p>
             <p>Mesi mancati(${user.getMissingMonths().length}):</p>

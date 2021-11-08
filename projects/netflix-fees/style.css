@@ -24,7 +24,14 @@ body > main > section {
 
 body > main > section > h2 {
     font-size: 2em;
+}
+
+body > main > section > p {
     margin-bottom: 8px;
+}
+
+body > main > section > p > span {
+    font-style: oblique;
 }
 
 body > main > section > section > p:not(:first-child) {
