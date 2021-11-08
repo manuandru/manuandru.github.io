@@ -752,7 +752,8 @@ const animations = ["animate__zoomIn", "animate__zoomInDown", "animate__zoomInLe
 document.addEventListener("DOMContentLoaded", () => {
     const href = window.location.href.split("#");
     if (href.length > 1 && colorMap[href[1]]) {
-        const choosenColor = colorMap[href[1]];
+        const choosenColor = href[1];
+        console.log(choosenColor);
         document.body.style.backgroundColor = colorMap[choosenColor];
         colorName.innerHTML = choosenColor;
         colorHex.innerHTML = colorMap[choosenColor];
