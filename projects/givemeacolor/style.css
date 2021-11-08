@@ -10,9 +10,11 @@ body {
     margin-top: 35vh;
 }
 
-:root {
+html:root {
     --animate-duration: 0.8s;
-  }
+    --animate-delay: 0s;
+    
+}
 
 #box {
     font-size: 3em;

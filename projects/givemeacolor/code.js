@@ -755,10 +755,11 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.style.backgroundColor = colorMap[choosenColor];
         colorName.innerHTML = choosenColor;
         colorHex.innerHTML = colorMap[choosenColor];
+        
+        animate(animations[Math.floor(Math.random() * animations.length)]);
     } else {
         setNewColor();
     }
-    box.addEventListener("click", setNewColor);
 });
 
 function setNewColor() {
@@ -772,11 +773,9 @@ function setNewColor() {
 }
 
 function animate(animation) {
-    box.removeEventListener("click", setNewColor);
-    box.classList.remove(animation);
     box.classList.add(animation);
-    setTimeout(() => {
+    box.addEventListener('animationend', () => {
         box.classList.remove(animation);
-        box.addEventListener("click", setNewColor);
-    }, 900);
+        box.addEventListener("click", setNewColor, {once: true});
+    });
 }
