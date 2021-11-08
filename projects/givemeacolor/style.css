@@ -1,0 +1,48 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#center {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+
+    margin-top: 35vh;
+}
+
+@keyframes myAnimation {
+    from {
+        transform: rotate(0deg);
+        opacity: 0;
+    }
+    to {
+        transform: rotate(720deg);
+        opacity: 1;
+    }
+}
+
+#box {
+    font-size: 3em;
+    color: #030303;
+    background-color: #f5f5f5;
+    padding: 0.35em 1.25em;
+    text-align: center;
+
+    text-transform: uppercase;
+    
+    box-shadow: grey 15px 15px 15px;
+    border-radius: 20px;
+
+    animation-name: myAnimation;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-out;
+}
+
+h1 {
+    margin: 0;
+}
+
+p {
+    margin: 0;
+}
+
