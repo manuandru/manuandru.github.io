@@ -28,24 +28,22 @@ body > main > section > h2 {
 }
 
 body > main > section > section > p:not(:first-child) {
-    font-size: 1.2em;
+    font-size: 1.3em;
     text-decoration: underline;
 }
 
 body > main > section > section > p:first-child {
     font-size: 1.5em;
     font-style: oblique;
-    margin-bottom: 8px;
+    margin-bottom: 1px;
 }
 
 body > main > section > section > ul {
     list-style-type: none;
     border: 3px dashed black;
-    margin: 10% 5%;
-    font-size: 1.1em;
+    margin: 16px 5% 10% 5%;
+    font-size: 1.2em;
 }
-
-
 
 body > main > section > section > p > span {
     font-weight: bolder;
@@ -62,3 +60,13 @@ body > main > section:nth-child(2) {
 body > main > section:nth-child(3) {
     background-color: #FF9A6D;
 }
+
+@media only screen and (max-width: 600px) {
+    body > main > section {
+        width: 100%;
+        border-top: 5px solid black;
+    }
+    body > main > section:last-child {
+        border-bottom: 5px solid black;
+    }
+  }
