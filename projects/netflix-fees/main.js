@@ -5,11 +5,11 @@ const fees = [{
 }, {
     name: 'Galva',
     lastPayment: '2020-09-24',
-    reminder: -20
+    reminder: -25
 }, {
     name: 'Cecca',
-    lastPayment: '2020-09-24',
-    reminder: -5
+    lastPayment: '2021-11-24',
+    reminder: 0
 }];
 
 const netflixPrice = 4.5;
