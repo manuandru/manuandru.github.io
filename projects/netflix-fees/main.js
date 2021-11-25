@@ -22,9 +22,9 @@ Date.prototype.getMonthName = function() {
 
 
 class User {
-    constructor(name, lastDataPayment, reminder) {
+    constructor(name, lastPaymentDate, reminder) {
         this.name = name;
-        this.lastDataPayment = new Date(lastDataPayment);
+        this.lastPaymentDate = new Date(lastPaymentDate);
         this.reminder = reminder;
     }
 
@@ -32,36 +32,38 @@ class User {
         return 1000 * 3600 * 24 * 30;
     }
     
-    /* Amount of money user have to pay */
+    /* return amount of money user have to pay */
     amount() {
-        console.log(this.getNumberOfMissingMonth());
         return this.getNumberOfMissingMonth() * netflixPrice + this.reminder;
     }
 
-    /* Number of  */
+    /* return number of missing Month */
     getNumberOfMissingMonth() {
         const today = new Date();
-        const lastPayment = new Date(this.lastDataPayment);
+        const lastPayment = new Date(this.lastPaymentDate);
         const diff = today.getTime() - lastPayment.getTime();
-        const monthDiff = Math.ceil(diff / this.oneMonth());
+        const monthDiff =
+            new Date().getDate() >= this.lastPaymentDate.getDate()
+            ? Math.ceil(diff / this.oneMonth())
+            : Math.floor(diff / this.oneMonth());
         return monthDiff;
     }
 
+    /* return an Array of missing Month */
     getMissingMonths() {
         const missingMonth = [];
-        let today = new Date();
+        /* the month decrement could be better cause
+        it's made by a statistic of month in 30 days
+        there's a bug if month >~ 30 */
+        let today = new Date(
+            new Date().getFullYear(),
+            new Date().getDate() > this.lastPaymentDate.getDate() ? new Date().getMonth()+1 : new Date().getMonth(),
+            1);
         for (let index = 0; index < this.getNumberOfMissingMonth(); index++) {
             missingMonth.push(today);
             today = new Date(today.getTime() - this.oneMonth());
         }
         return missingMonth;
-    }
-
-    getMissingMonthsString() {
-        return this.getMissingMonths().map(month => `<li>
-        ${month.getMonthName()} ${month.getFullYear()}
-        </li>`
-        ).join(' ');
     }
 
 }
@@ -74,12 +76,12 @@ for (const key in fees) {
     main.innerHTML += 
     `<section>
         <h2>${user.name}</h2>
-        <p>Ultimo pagamento: <span>${user.lastDataPayment.toLocaleDateString()}</span></p>
+        <p>Ultimo pagamento: <span>${user.lastPaymentDate.toLocaleDateString()}</span></p>
         <section>
             <p>Da Pagare: <span>${user.amount()} €</span></p>
             <p>Mesi mancati(${user.getMissingMonths().length}):</p>
             <ul>
-            ${user.getMissingMonthsString()}
+            ${user.getMissingMonths().map(month => `<li>${month.getMonthName()} ${month.getFullYear()}</li>`).join(' ')}
             </ul>
         </section>
     </section>`;
