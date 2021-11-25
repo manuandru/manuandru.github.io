@@ -76,7 +76,7 @@ for (const key in fees) {
     main.innerHTML += 
     `<section>
         <h2>${user.name}</h2>
-        <p>Ultimo pagamento: <span>${user.lastPaymentDate.toLocaleDateString()}</span></p>
+        <p>Payed up: <span>${user.lastPaymentDate.toLocaleDateString()}</span></p>
         <section>
             <p>Da Pagare: <span>${user.amount()} €</span></p>
             <p>Mesi mancati(${user.getMissingMonths().length}):</p>
