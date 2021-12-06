@@ -1,0 +1,13 @@
+[{
+    "name": "Mala",
+    "payedUp": "2021-05-23",
+    "reminder": -2
+}, {
+    "name": "Galva",
+    "payedUp": "2020-09-23",
+    "reminder": -25
+}, {
+    "name": "Cecca",
+    "payedUp": "2021-11-23",
+    "reminder": 0
+}]

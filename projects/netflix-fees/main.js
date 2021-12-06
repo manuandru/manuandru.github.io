@@ -1,19 +1,17 @@
-const fees = [{
-    name: 'Mala',
-    payedUp: '2021-05-23',
-    reminder: -2
-}, {
-    name: 'Galva',
-    payedUp: '2020-09-23',
-    reminder: -25
-}, {
-    name: 'Cecca',
-    payedUp: '2021-11-23',
-    reminder: 0
-}];
-
+'use strict';
 const netflixPrice = 4.5;
 const billingDay = 24;
+
+const xhttp = new XMLHttpRequest();
+
+xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        let fees = JSON.parse(this.responseText);
+        main(fees);
+    }
+};
+xhttp.open("GET", "fees.json", true);
+xhttp.send();
 
 Date.prototype.getMonthName = function() {
     const Months = ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'];
@@ -52,25 +50,26 @@ class User {
 
 }
 
-let totalAmount = 0;
-const main = document.querySelector("main");
-for (const key in fees) {
-    const user = new User(fees[key].name, fees[key].payedUp, fees[key].reminder);
-    totalAmount += user.amount();
-    main.innerHTML += 
-    `<section>
-        <h2>${user.name}</h2>
-        <p>Payed up: <span>${user.payedUp.toLocaleDateString()}</span></p>
-        <section>
-            <p>Da Pagare: <span>${user.amount()} €</span></p>
-            <p>Mesi mancati(${user.getMissingMonths().length}):</p>
-            <ul>
-            ${user.getMissingMonths().map(month => 
-                `<li>${month.getMonthName()}</li>`).join(' ')}
-            </ul>
-        </section>
-    </section>`;
+function main(fees) {
+    let totalAmount = 0;
+    const main = document.querySelector("main");
+    for (const key in fees) {
+        const user = new User(fees[key].name, fees[key].payedUp, fees[key].reminder);
+        totalAmount += user.amount();
+        main.innerHTML +=
+        `<section>
+            <h2>${user.name}</h2>
+            <p>Payed up: <span>${user.payedUp.toLocaleDateString()}</span></p>
+            <section>
+                <p>Da Pagare: <span>${user.amount()} €</span></p>
+                <p>Mesi mancati(${user.getMissingMonths().length}):</p>
+                <ul>
+                ${user.getMissingMonths().map(month =>
+                    `<li>${month.getMonthName()}</li>`).join(' ')}
+                </ul>
+            </section>
+        </section>`;
+    }
+
+    document.querySelector("h1").innerHTML += ` (${totalAmount} €)`;
 }
-
-document.querySelector("h1").innerHTML += ` (${totalAmount} €)`;
-
