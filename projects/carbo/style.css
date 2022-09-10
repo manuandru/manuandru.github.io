@@ -1,0 +1,70 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    position: sticky;
+    touch-action: manipulation;
+}
+
+body {
+    background: #FFF07C;
+    font-family: sans-serif;
+}
+
+h1 {
+    font-size: 3em;
+    color: #000;
+    text-align: center;
+    margin: .5em 0 .8em ;
+}
+
+section {
+    display: inline-block;
+    margin: 2em 2% 0;
+    text-align: center;
+    width: 46%;
+
+    border: #000 1px solid;
+    border-radius: .5em;
+    box-shadow: .2em .4em .5em #000;
+    padding: 1em 0;
+}
+
+section:first-of-type {
+    margin-left: 28%;
+    margin-right: 26%;
+}
+
+section > h2 {
+    margin-bottom: 0.5em;
+    font-size: 2em;
+    color: #000;
+    text-align: center;
+    font-weight: bold;
+}
+
+section > button {
+    /* remove default styling */
+    background-color: transparent;
+    border-color: transparent;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
+
+    display: inline-block;
+    width: 20%;
+    font-size: 3em;
+    color: #000;
+}
+
+section > p {
+    display: inline-block;
+    width: 100%;
+    font-size: 3em;
+    color: #000;
+    text-align: center;
+    font-weight: lighter;
+}
+
+section > button+p {
+    width: 40%;
+}
